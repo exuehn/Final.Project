@@ -22,8 +22,8 @@ let noCircles = 0;
 //level3 inputs
 let textBox = false;
 let inp;
-let correctAns = ["hello"];
-let submitAns = [];
+let correctAns = "hello";
+let submitAns;
 let button;
 
 //interaction counters
@@ -223,10 +223,10 @@ function typeWords() {
   
     button = createButton("submit");
     button.position(x + 200, y);
-    button.mousePressed(submitAns[0]);
+    button.mousePressed(submitAns);
 
 
-    if (submitAns[0] == correctAns[0]) {
+    if (submitAns == correctAns) {
 
       ellipse(x , y, 200, 200);
   
