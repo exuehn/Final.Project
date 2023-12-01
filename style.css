@@ -21,3 +21,35 @@ body {
 canvas {
   display: block;
 }
+
+#inpOnePos {
+
+  top: 30%;
+  left: calc(50% - 100px);
+  position: absolute;
+  
+}
+
+#inpTwoPos {
+
+  top: 40%;
+  left: calc(50% - 100px);
+  position: absolute;
+  
+}
+
+#inpThreePos {
+
+  top: 50%;
+  left: calc(50% - 100px);
+  position: absolute;
+  
+}
+
+#inpFourPos {
+
+  top: 60%;
+  left: calc(50% - 100px);
+  position: absolute;
+  
+}

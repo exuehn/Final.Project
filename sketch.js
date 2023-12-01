@@ -20,11 +20,26 @@ let b;
 let noCircles = 0;
 
 //level3 inputs
-let textBox = false;
-let inp;
-let correctAns = "hello";
-let submitAns;
-let button;
+  //first text box
+let textOne = false;
+let inpOne;
+let ansOne = "hello";
+let correctOne = false;
+  //second text box
+let textTwo = false;
+let inpTwo;
+let ansTwo = "bye";
+let correctTwo = false;
+  //third text box
+let textThree = false;
+let inpThree;
+let ansThree = "bye";
+let correctThree = false;
+  //fourth text box
+let textFour = false;
+let inpFour;
+let ansFour = "bye";
+let correctFour = false;
 
 //interaction counters
 let noClick = 0;
@@ -41,6 +56,7 @@ function preload() {
 function setup() {
 
   createCanvas(1280, 720);
+
 
   x = width/2;
   y = height/2;
@@ -77,6 +93,7 @@ function draw() {
 
     image(cursor, cursorX, cursorY, 10, 15);
 
+    //show counter data on screen
     noStroke();
     textSize(80);
     textAlign(CENTER, CENTER);
@@ -94,6 +111,26 @@ function draw() {
   if (level == 3) {
 
     typeWords();
+
+    image(cursor, cursorX, cursorY, 10, 15);
+
+    noStroke();
+    textSize(80);
+    textAlign(CENTER, CENTER);
+    fill(255, 0, 0, 100);
+    text(noClick, cursorX, cursorY/2.1);
+    fill(0, 255, 0, 100);
+    text(noMove, cursorX/0.7, cursorY);
+    fill(255, 0, 255, 100);
+    text(noKeyPress, cursorX/2.4, cursorY);
+    fill(255, 255, 0, 100);
+    text(noDelete, cursorX, cursorY/0.5);
+
+  }
+
+  if (level == 4) {
+
+    tileMaze();
 
     image(cursor, cursorX, cursorY, 10, 15);
 
@@ -213,29 +250,130 @@ function typeWords() {
   cursorX = mouseX;
   cursorY = mouseY;
 
-  if (textBox == false) {
+  //code for first textbox
+  if (textOne == false) {
 
-    inp = createInput('');
-    inp.position(x, y);
-    inp.size(200);
+    //creating input and adjusting position
+    inpOne = createInput('');
+    inpOne.size(200);
+    inpOne.id('inpOnePos');
 
-    textBox = true;
-  
-    button = createButton("submit");
-    button.position(x + 200, y);
-    button.mousePressed(submitAns);
+    //checking if input is the correct answer
+    inpOne.input(() => {
+
+      if (inpOne.value() == ansOne) {
+
+        correctOne = true;
+
+      } else {
+
+        correctOne = false;
+      }
+      
+    });
+
+    textOne = true;
+
+  }
+
+  //code for second textbox
+  if (textTwo == false) {
+
+    inpTwo = createInput('');
+    inpTwo.size(200);
+    inpTwo.id('inpTwoPos');
+
+    inpTwo.input(() => {
+
+      if (inpTwo.value() == ansTwo) {
+
+        correctTwo = true;
+
+      } else {
+
+        correctTwo = false;
+      }
+      
+    });
+
+    textTwo = true;
+
+  }
+
+  //code for third textbox
+  if (textThree == false) {
+
+    inpThree = createInput('');
+    inpThree.size(200);
+    inpThree.id('inpThreePos');
+
+    inpThree.input(() => {
+
+      if (inpThree.value() == ansThree) {
+
+        correctThree = true;
+
+      } else {
+
+        correctThree = false;
+      }
+      
+    });
+
+    textThree = true;
+
+  }
+
+  //code for fourth textbox
+  if (textFour == false) {
+
+    inpFour = createInput('');
+    inpFour.size(200);
+    inpFour.id('inpFourPos');
+
+    inpFour.input(() => {
+
+      if (inpFour.value() == ansFour) {
+
+        correctFour = true;
+
+      } else {
+
+        correctFour = false;
+      }
+      
+    });
+
+    textFour = true;
+
+  }
 
 
-    if (submitAns == correctAns) {
+  //if all answers are correct, move to next level
+  if (correctOne && correctTwo && correctThree && correctFour == true) {
 
-      ellipse(x , y, 200, 200);
-  
-    }
+    
+    level = 4;
+
+    //removing text box before next level
+    inpOne.remove();
+    inpTwo.remove();
+    inpThree.remove();
+    inpFour.remove();
+
+
   }
 
 }
 
+function tileMaze() {
 
+  background(130);
+
+  cursorX = mouseX;
+  cursorY = mouseY;
+
+}
 
 
 
