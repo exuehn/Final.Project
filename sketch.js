@@ -40,6 +40,16 @@ let textFour = false;
 let inpFour;
 let ansFour = "bye";
 let correctFour = false;
+  //fifth text box
+let textFive = false;
+let inpFive;
+let ansFive = "bye";
+let correctFive = false;
+  //sixth text box
+let textSix = false;
+let inpSix;
+let ansSix = "bye";
+let correctSix = false;
 
 //interaction counters
 let noClick = 0;
@@ -250,6 +260,30 @@ function typeWords() {
   cursorX = mouseX;
   cursorY = mouseY;
 
+  textFont('Times New Roman');
+  select('canvas').elt.style.letterSpacing = "8px";
+  textSize(32);
+  noStroke();
+  textAlign(RIGHT, BOTTOM);
+
+  fill(255, 0, 0);
+  text('START', x - 500, y);
+
+  fill(0, 0, 255);
+  text('START', x - 300, y);
+
+  fill(0, 255, 0);
+  text('START', x, y - 400);
+
+  fill(150, 150, 0);
+  text('START', x - 100, y);
+
+  fill(200, 0, 170);
+  text('START', x + 300, y);
+
+  fill(130, 140, 60);
+  text('START', x + 500, y);
+
   //code for first textbox
   if (textOne == false) {
 
@@ -348,11 +382,64 @@ function typeWords() {
 
   }
 
+  //code for fifth textbox
+  if (textFive == false) {
+
+    inpFive = createInput('');
+    inpFive.size(200);
+    inpFive.id('inpFivePos');
+
+    inpFive.input(() => {
+
+      if (inpFive.value() == ansFive) {
+
+        correctFive = true;
+
+      } else {
+
+        correctFive = false;
+      }
+      
+    });
+
+    textFive = true;
+
+  }
+
+  //code for sixth textbox
+  if (textSix == false) {
+
+    inpSix = createInput('');
+    inpSix.size(200);
+    inpSix.id('inpSixPos');
+
+    inpSix.input(() => {
+
+      if (inpSix.value() == ansSix) {
+
+        correctSix = true;
+
+      } else {
+
+        correctSix = false;
+      }
+      
+    });
+
+    textSix = true;
+
+  }
+  
+
 
   //if all answers are correct, move to next level
-  if (correctOne && correctTwo && correctThree && correctFour == true) {
+  if (correctOne && 
+    correctTwo && 
+    correctThree && 
+    correctFour &&
+    correctFive &&
+    correctSix == true) {
 
-    
     level = 4;
 
     //removing text box before next level
@@ -360,7 +447,8 @@ function typeWords() {
     inpTwo.remove();
     inpThree.remove();
     inpFour.remove();
-
+    inpFive.remove();
+    inpSix.remove();
 
   }
 
