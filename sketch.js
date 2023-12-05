@@ -1,5 +1,5 @@
 //which level to put on
-let level = 1;
+let level = 4;
 
 //x & y coordinates
 let x;
@@ -23,33 +23,47 @@ let noCircles = 0;
   //first text box
 let textOne = false;
 let inpOne;
-let ansOne = "hello";
+let ansOne = "world wide web";
 let correctOne = false;
   //second text box
 let textTwo = false;
 let inpTwo;
-let ansTwo = "bye";
+let ansTwo = "hypermedia";
 let correctTwo = false;
   //third text box
 let textThree = false;
 let inpThree;
-let ansThree = "bye";
+let ansThree = "information";
 let correctThree = false;
   //fourth text box
 let textFour = false;
 let inpFour;
-let ansFour = "bye";
+let ansFour = "universal";
 let correctFour = false;
   //fifth text box
 let textFive = false;
 let inpFive;
-let ansFive = "bye";
+let ansFive = "access";
 let correctFive = false;
   //sixth text box
 let textSix = false;
 let inpSix;
-let ansSix = "bye";
+let ansSix = "documents";
 let correctSix = false;
+
+
+//level4 tilemap
+let numRows = 9;
+let numColumns = 16;
+let tileSize = 80;
+let textures = [];
+
+let tiles = [];
+
+let player; //to refer to the Player class
+let playerSprites = {}; //for luna's left right front and back images
+let playerSpeed = 3;
+
 
 //interaction counters
 let noClick = 0;
@@ -60,6 +74,31 @@ let noDelete = 0;
 function preload() {
 
   cursor = loadImage("assets/cursor.png");
+
+  textures[0] = loadImage(
+    "assets/floor.png"
+  );
+  textures[1] = loadImage(
+    "assets/wallup.png"
+  );
+  textures[2] = loadImage(
+    "assets/wallside.png"
+  );
+
+  playerSprites = {
+    up: loadImage(
+      "assets/mouseup.png"
+    ),
+    down: loadImage(
+      "assets/mousedown.png"
+    ),
+    left: loadImage(
+      "assets/mouseleft.png"
+    ),
+    right: loadImage(
+      "assets/mouseright.png"
+    ),
+  };
 
 }
 
@@ -80,6 +119,8 @@ function setup() {
   b = random(0, 255);
   cirX = int(random(0 + d/2, 1280 - d/2));
   cirY = int(random(0 + d/2, 720 - d/2));
+
+  buildMap (map);
   
 }
 
@@ -131,9 +172,9 @@ function draw() {
     text(noClick, cursorX, cursorY/2.1);
     fill(0, 255, 0, 100);
     text(noMove, cursorX/0.7, cursorY);
-    fill(255, 0, 255, 100);
+    fill(0, 0, 255, 100);
     text(noKeyPress, cursorX/2.4, cursorY);
-    fill(255, 255, 0, 100);
+    fill(255, 0, 255, 100);
     text(noDelete, cursorX, cursorY/0.5);
 
   }
@@ -143,6 +184,9 @@ function draw() {
     tileMaze();
 
     image(cursor, cursorX, cursorY, 10, 15);
+
+    player = new Player(playerSprites, 0, 0, tileSize, 4);
+    
 
   }
 
@@ -255,34 +299,34 @@ function pressButtons() {
 
 function typeWords() {
 
-  background(100);
+  background(255, 255, 0);
 
   cursorX = mouseX;
   cursorY = mouseY;
 
   textFont('Times New Roman');
-  select('canvas').elt.style.letterSpacing = "8px";
+  select('canvas').elt.style.letterSpacing = "3px";
   textSize(32);
   noStroke();
-  textAlign(RIGHT, BOTTOM);
+  textAlign(TOP, BOTTOM);
 
   fill(255, 0, 0);
-  text('START', x - 500, y);
+  text('world wide web', x - 400, y - 200);
 
   fill(0, 0, 255);
-  text('START', x - 300, y);
+  text('hypermedia', x + 320, y - 280);
 
   fill(0, 255, 0);
-  text('START', x, y - 400);
+  text('information', x + 25, y - 100);
 
-  fill(150, 150, 0);
-  text('START', x - 100, y);
+  fill(0, 0, 255);
+  text('universal', x - 300, y + 75);
 
-  fill(200, 0, 170);
-  text('START', x + 300, y);
+  fill(255, 0, 0);
+  text('access', x + 350, y + 25);
 
-  fill(130, 140, 60);
-  text('START', x + 500, y);
+  fill(0, 255, 0);
+  text('documents', x + 150, y + 250);
 
   //code for first textbox
   if (textOne == false) {
@@ -461,7 +505,39 @@ function tileMaze() {
   cursorX = mouseX;
   cursorY = mouseY;
 
+  for (let row = 0; row < numRows; row++) {
+    for (let col = 0; col < numColumns; col++) {
+      tiles[row][col].display();
+    }
+  }
+
+  player.move();
+  player.display();
+
+
 }
+
+function buildMap(map) {
+  currentMap = map; //set the currently displayed map
+
+  numRows = currentMap.textureMap.length;
+  numColumns = currentMap.textureMap[0].length;
+
+  for (let row = 0; row < numRows; row++) {
+    tiles[row] = []; //initialise a new array for every row--this will refer to each column of tiles in our current row
+    //spriteTile[row] = [];
+
+    for (let col = 0; col < numColumns; col++) {
+      let tileID = currentMap.textureMap[row][col]; //get the ID of the current texture from our tileMap
+      tiles[row][col] = new Tile(textures[tileID], row, col, tileSize); //initialise a new tile at the current row and column
+
+      //let spriteID = currentMap.spriteMap[row][col];
+      //spriteTile[row][col] = new Tile(sprites[spriteID], row, col, tileSize);
+    }
+  }
+}
+
+
 
 
 
@@ -488,5 +564,7 @@ function keyPressed() {
     noDelete ++;
 
   }
+
+  
 
 }

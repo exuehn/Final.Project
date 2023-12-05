@@ -24,24 +24,24 @@ canvas {
 
 #inpOnePos {
 
-  top: 30%;
-  left: calc(50% - 100px);
+  top: 28%;
+  left: calc(20% - 100px);
   position: absolute;
   
 }
 
 #inpTwoPos {
 
-  top: 40%;
-  left: calc(20% - 100px);
+  top: 18%;
+  left: calc(70% - 100px);
   position: absolute;
   
 }
 
 #inpThreePos {
 
-  top: 50%;
-  left: calc(30% - 100px);
+  top: 40%;
+  left: calc(50% - 100px);
   position: absolute;
   
 }
@@ -49,15 +49,15 @@ canvas {
 #inpFourPos {
 
   top: 60%;
-  left: calc(40% - 100px);
+  left: calc(30% - 100px);
   position: absolute;
   
 }
 
 #inpFivePos {
 
-  top: 70%;
-  left: calc(50% - 100px);
+  top: 55%;
+  left: calc(75% - 100px);
   position: absolute;
   
 }
