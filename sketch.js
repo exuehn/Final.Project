@@ -1,5 +1,5 @@
 //which level to put on
-let level = 4;
+let level = 1;
 
 //x & y coordinates
 let x;
@@ -53,6 +53,8 @@ let correctSix = false;
 
 
 //level4 tilemap
+let tileStart = false;
+
 let numRows = 9;
 let numColumns = 16;
 let tileSize = 80;
@@ -60,8 +62,8 @@ let textures = [];
 
 let tiles = [];
 
-let player; //to refer to the Player class
-let playerSprites = {}; //for luna's left right front and back images
+let player;
+let playerSprites = {};
 let playerSpeed = 3;
 
 
@@ -121,6 +123,7 @@ function setup() {
   cirY = int(random(0 + d/2, 720 - d/2));
 
   buildMap (map);
+  player = new Player(playerSprites, 0, 0, tileSize, 4);
   
 }
 
@@ -185,8 +188,13 @@ function draw() {
 
     image(cursor, cursorX, cursorY, 10, 15);
 
-    player = new Player(playerSprites, 0, 0, tileSize, 4);
-    
+  }
+
+  if (level == 5) {
+
+    copyPaste();
+
+    image(cursor, cursorX, cursorY, 10, 15);
 
   }
 
@@ -272,7 +280,7 @@ function pressButtons() {
 
   if(distance < d/2) {
 
-    if (noCircles == 1) {
+    if (noCircles == 6) {
 
       level = 3;
 
@@ -498,6 +506,7 @@ function typeWords() {
 
 }
 
+//functions for maze
 function tileMaze() {
 
   background(130);
@@ -506,35 +515,59 @@ function tileMaze() {
   cursorY = mouseY;
 
   for (let row = 0; row < numRows; row++) {
+
     for (let col = 0; col < numColumns; col++) {
+
       tiles[row][col].display();
+
     }
+
   }
 
   player.move();
   player.display();
 
-
 }
 
 function buildMap(map) {
+
   currentMap = map; //set the currently displayed map
 
   numRows = currentMap.textureMap.length;
   numColumns = currentMap.textureMap[0].length;
 
   for (let row = 0; row < numRows; row++) {
+
     tiles[row] = []; //initialise a new array for every row--this will refer to each column of tiles in our current row
-    //spriteTile[row] = [];
 
     for (let col = 0; col < numColumns; col++) {
+
       let tileID = currentMap.textureMap[row][col]; //get the ID of the current texture from our tileMap
       tiles[row][col] = new Tile(textures[tileID], row, col, tileSize); //initialise a new tile at the current row and column
 
-      //let spriteID = currentMap.spriteMap[row][col];
-      //spriteTile[row][col] = new Tile(sprites[spriteID], row, col, tileSize);
     }
+
   }
+
+}
+
+function handleTransition() {
+
+  if (player.returnTransitionIndex() == 1) {
+    
+    level = 5;
+
+  }
+
+}
+//end of function for maze
+
+function copyPaste() {
+
+  background (0);
+
+
+
 }
 
 
@@ -564,7 +597,10 @@ function keyPressed() {
     noDelete ++;
 
   }
-
   
+  //for tilemap level
+  player.setDirection(key); 
+  handleTransition();
+  currentDialogueIndex = player.returnDialogueIndex();
 
 }
