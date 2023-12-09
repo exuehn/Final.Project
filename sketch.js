@@ -80,6 +80,12 @@ let noMove = 0;
 let noKeyPress = 0;
 let noDelete = 0;
 
+//sound effects
+let clickedSound;
+let movedSound;
+let keySound;
+
+
 function preload() {
 
   cursor = loadImage("assets/cursor.png");
@@ -108,6 +114,10 @@ function preload() {
       "assets/mouseright.png"
     ),
   };
+
+  clickedSound = loadSound('assets/error.mp3');
+  movedSound = loadSound('assets/startup.mp3');
+  keySound = loadSound('assets/trash.mp3');
 
 }
 
@@ -624,15 +634,35 @@ function mousePressed() {
 
   noClick ++;
 
+  if (!clickedSound.isPlaying()) {
+
+    clickedSound.play();
+
+  }
+
 }
+
 function mouseMoved() {
 
   noMove ++;
 
+  if (!movedSound.isPlaying()) {
+    
+    movedSound.play();
+
+  }
+
 }
+
 function keyPressed() {
 
   noKeyPress ++;
+
+  if (!keySound.isPlaying()) {
+
+    keySound.play();
+
+  }
 
   if (keyCode === 8) {
 
