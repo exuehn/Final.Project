@@ -27,3 +27,9 @@ turning the keyboard upside down
 face your laptop away from you
 stand while playing
 hold your laptop up
+
+the typing level
+depending on screen size, the position of textboxes changes
+sometimes it would block the screen
+its because its the easiest way i found to code it, it doesnt align with the canvas but the html page
+shows how we are suppose to code in a way that the computer understands, comprimising ourselves for the computer

@@ -67,6 +67,13 @@ let playerSprites = {};
 let playerSpeed = 3;
 
 
+//level5
+let showText = false;
+let inpPaste = false;
+let inpCopyText;
+let ansPaste = "bradley said it only took 5 minutes to dream up the iconic combination";
+
+
 //interaction counters
 let noClick = 0;
 let noMove = 0;
@@ -218,7 +225,7 @@ function startButton() {
       && mouseY > y - 25
       && mouseY < y + 25){
 
-        level = 2;
+        level = int(random(1, 6));
 
       }
     
@@ -282,7 +289,7 @@ function pressButtons() {
 
     if (noCircles == 6) {
 
-      level = 3;
+      level = int(random(1, 6));
 
     } else {
 
@@ -492,7 +499,7 @@ function typeWords() {
     correctFive &&
     correctSix == true) {
 
-    level = 4;
+    level = int(random(1, 6));
 
     //removing text box before next level
     inpOne.remove();
@@ -555,7 +562,8 @@ function handleTransition() {
 
   if (player.returnTransitionIndex() == 1) {
     
-    level = 5;
+    player.setPos(0, 0);
+    level = int(random(1, 6));
 
   }
 
@@ -564,10 +572,44 @@ function handleTransition() {
 
 function copyPaste() {
 
-  background (0);
+  background (200);
 
+  cursorX = mouseX;
+  cursorY = mouseY;
 
+  if (showText == false) {
 
+    createElement('p', 'bradley said it only took 5 minutes to dream up the iconic combination').id('copyText');
+
+    showText = true;
+
+  }
+  
+
+  if (inpPaste == false) {
+
+    //creating input and adjusting position
+    inpCopyText = createInput('');
+    inpCopyText.size(200);
+    inpCopyText.id('inpTextPos');
+
+    //checking if input is the correct answer
+    inpCopyText.input(() => {
+
+      if (inpCopyText.value() == ansPaste) {
+
+        level = int(random(1, 5));
+        inpCopyText.remove();
+        document.getElementById('copyText').style.display = 'none';
+
+      } 
+      
+    });
+
+    inpPaste = true;
+
+  }
+  
 }
 
 
@@ -601,6 +643,6 @@ function keyPressed() {
   //for tilemap level
   player.setDirection(key); 
   handleTransition();
-  currentDialogueIndex = player.returnDialogueIndex();
+  
 
 }
