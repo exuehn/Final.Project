@@ -1,6 +1,6 @@
 class Player {
 
-    constructor(sprites, startRow, startColumn, playerSize) {
+    constructor (sprites, startRow, startColumn, playerSize) {
 
         this.sprites = sprites;
         this.currentSprite = sprites.down;
@@ -23,28 +23,27 @@ class Player {
 
     }
   
-    display() {
+    display () {
 
       image(this.currentSprite, this.x, this.y, this.playerSize, this.playerSize);
 
     }
   
-    setDirection(mykey) {
+    setDirection (mykey) {
 
         let key = mykey; 
         
-        //only update the move direction if the player has arrived at the target tile
         if (this.moveDirection == "NONE") {
+
             if (key == "j" && this.row > 0) {
                 
                 this.currentSprite = this.sprites.up;
                 this.isFacing = "UP";
         
-                //check if the tile we want to move to is walkable
                 if (currentMap.collisionMap[this.row - 1][this.column] == 1) {
 
                     this.moveDirection = "UP";
-                    this.ty = this.y - tileSize; //sets new target to one tile above the player
+                    this.ty = this.y - tileSize; 
 
                 }
 
@@ -56,8 +55,10 @@ class Player {
                 this.isFacing = "DOWN";
         
                 if (currentMap.collisionMap[this.row + 1][this.column] == 1) {
+
                     this.moveDirection = "DOWN";
-                    this.ty = this.y + tileSize; //moving down
+                    this.ty = this.y + tileSize; 
+
                 }
 
             }
@@ -70,7 +71,7 @@ class Player {
                 if (currentMap.collisionMap[this.row][this.column - 1] == 1) {
 
                     this.moveDirection = "LEFT";
-                    this.tx = this.x - tileSize; //moving left
+                    this.tx = this.x - tileSize;
 
                 }
 
@@ -84,7 +85,7 @@ class Player {
                 if (currentMap.collisionMap[this.row][this.column + 1] == 1) {
 
                     this.moveDirection = "RIGHT";
-                    this.tx = this.x + tileSize; //moving right
+                    this.tx = this.x + tileSize; 
 
                 }
 
@@ -96,25 +97,17 @@ class Player {
   
     move() {
 
-        //floor - mathematical rounding function, rounds down all the time
         this.row = floor(this.y / tileSize);
         this.column = floor(this.x / tileSize);
-    
-        //debugging purpose
-        //fill(255, 0, 0);
-        //textSize(20);
-        //text(this.column + "," + this.row, 10, 25);
     
         if (this.moveDirection == "UP") {
 
             this.y -= this.playerSpeed;
-    
-            //check if we've reached the target position
+
             if (this.y <= this.ty) {
 
                 this.y = this.ty;
     
-                //check we've reached the target, update move direction to none
                 this.moveDirection = "NONE";
 
             }
@@ -164,7 +157,7 @@ class Player {
 
     }
     
-    setPos(row, column){
+    setPos (row, column) {
 
         this.moveDirection = "NONE";
         this.row = row;
@@ -174,29 +167,29 @@ class Player {
 
     }
     
-    returnTransitionIndex(){
+    returnTransitionIndex () {
       
         let transitionIndex = 0; //no transition
         
-        if(this.moveDirection == "UP"){
+        if (this.moveDirection == "UP") {
             
             transitionIndex = currentMap.transitionMap[this.row - 1][this.column];
             
         }
 
-        if(this.moveDirection == "DOWN"){
+        if (this.moveDirection == "DOWN") {
             
             transitionIndex = currentMap.transitionMap[this.row + 1][this.column];
             
         }
 
-        if(this.moveDirection == "LEFT"){
+        if (this.moveDirection == "LEFT") {
             
             transitionIndex = currentMap.transitionMap[this.row][this.column - 1];
             
         }
 
-        if(this.moveDirection == "RIGHT"){
+        if (this.moveDirection == "RIGHT") {
             
             transitionIndex = currentMap.transitionMap[this.row][this.column + 1];
             
