@@ -1,45 +1,7 @@
-# Final.Project
+# Not What You Think Of
+!(ss+rec/screenshot1.png)
 
 A screenshot of your project, showing how the project looks.
 An explanation of the how users experience or interact with your project and any objectives.
 
 
-level three
-words are from the first www webpage
-
-
-
-
-why does it have to be a game?
-is it a game?
-it wasnt supposed to be a game, it was just suppose to be an interative interface where users experiment with the norms of using interfaces
-its kinda like a game cuz the definition of game is where there is interaction using an input. the point where it differs is that a game has progression and consequences, there is a series of levels but there are no consequences if you cant finish it. i see it as more of an artistic project that reveals the way we made ourselves to cater to the devices and interfaces we are using
-why are we always
-
-it is a medium to encourage moments of realisation
-to emphasise and show the links between the physical and the input hardware
-
-the project is coded this way because i am the coder
-it is easier and more efficient for me to code
-exploring the power and control
-i force users to navigate through my project in my convinience
-
-
-bringing physicality into the scnene, exploring why we were in the position of how we use 
-changing how we use the physical interfaces
-flipping the mouse around
-turning the keyboard upside down
-face your laptop away from you
-stand while playing
-hold your laptop up
-
-the typing level
-depending on screen size, the position of textboxes changes
-sometimes it would block the screen
-its because its the easiest way i found to code it, it doesnt align with the canvas but the html page
-shows how we are suppose to code in a way that the computer understands, comprimising ourselves for the computer
-
-
-originally didnt thought about doing random levels
-but then questioning the theme of control, i want it more of between the computer and the user
-whatever i can make it random where the computer decide, i will let that happen
