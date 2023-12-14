@@ -1,9 +1,14 @@
 # Final.Project
 
+A screenshot of your project, showing how the project looks.
+An explanation of the how users experience or interact with your project and any objectives.
 
 
 level three
 words are from the first www webpage
+
+
+
 
 why does it have to be a game?
 is it a game?
@@ -33,3 +38,8 @@ depending on screen size, the position of textboxes changes
 sometimes it would block the screen
 its because its the easiest way i found to code it, it doesnt align with the canvas but the html page
 shows how we are suppose to code in a way that the computer understands, comprimising ourselves for the computer
+
+
+originally didnt thought about doing random levels
+but then questioning the theme of control, i want it more of between the computer and the user
+whatever i can make it random where the computer decide, i will let that happen

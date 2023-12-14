@@ -1,0 +1,228 @@
+inpOne.input(() => {
+      let currentValue = inpOne.value();
+      if (currentValue.includes('q')) {
+        inpOne.value(currentValue.replace('q', 'a'));
+      }
+      if (currentValue.includes('w')) {
+        inpOne.value(currentValue.replace('w', 'b'));
+      }
+      if (currentValue.includes('e')) {
+        inpOne.value(currentValue.replace('e', 'c'));
+      }
+      if (currentValue.includes('r')) {
+        inpOne.value(currentValue.replace('r', 'd'));
+      }
+      if (currentValue.includes('t')) {
+        inpOne.value(currentValue.replace('t', 'e'));
+      }
+      if (currentValue.includes('y')) {
+        inpOne.value(currentValue.replace('y', 'f'));
+      }
+      if (currentValue.includes('u')) {
+        inpOne.value(currentValue.replace('u', 'g'));
+      }
+      if (currentValue.includes('i')) {
+        inpOne.value(currentValue.replace('i', 'h'));
+      }
+      if (currentValue.includes('o')) {
+        inpOne.value(currentValue.replace('o', 'i'));
+      }
+      if (currentValue.includes('p')) {
+        inpOne.value(currentValue.replace('p', 'j'));
+      }
+      if (currentValue.includes('a')) {
+        inpOne.value(currentValue.replace('a', 'k'));
+      }
+      if (currentValue.includes('s')) {
+        inpOne.value(currentValue.replace('s', 'l'));
+      }
+      if (currentValue.includes('d')) {
+        inpOne.value(currentValue.replace('d', 'm'));
+      }
+      if (currentValue.includes('f')) {
+        inpOne.value(currentValue.replace('f', 'n'));
+      }
+      if (currentValue.includes('g')) {
+        inpOne.value(currentValue.replace('g', 'o'));
+      }
+      if (currentValue.includes('h')) {
+        inpOne.value(currentValue.replace('h', 'p'));
+      }
+      if (currentValue.includes('j')) {
+        inpOne.value(currentValue.replace('j', 'q'));
+      }
+      if (currentValue.includes('k')) {
+        inpOne.value(currentValue.replace('k', 'r'));
+      }
+      if (currentValue.includes('l')) {
+        inpOne.value(currentValue.replace('l', 's'));
+      }
+      if (currentValue.includes('z')) {
+        inpOne.value(currentValue.replace('z', 't'));
+      }
+      if (currentValue.includes('x')) {
+        inpOne.value(currentValue.replace('x', 'u'));
+      }
+      if (currentValue.includes('c')) {
+        inpOne.value(currentValue.replace('c', 'v'));
+      }
+      if (currentValue.includes('v')) {
+        inpOne.value(currentValue.replace('v', 'w'));
+      }
+      if (currentValue.includes('b')) {
+        inpOne.value(currentValue.replace('b', 'x'));
+      }
+      if (currentValue.includes('n')) {
+        inpOne.value(currentValue.replace('n', 'y'));
+      }
+      if (currentValue.includes('m')) {
+        inpOne.value(currentValue.replace('m', 'z'));
+      }
+
+
+    });
+
+    if (key === 'q') {
+      inpOne.value(inpOne.value() + 'a');
+      inpTwo.value(inpTwo.value() + 'a');
+      return false;
+    } else if (key === 'w') {
+      inpOne.value(inpOne.value() + 'b');
+      inpTwo.value(inpTwo.value() + 'b');
+      return false;
+    }
+
+    
+
+    // First input box
+    inpOne.input(() => {
+        let currentValue = inpOne.value();
+        currentValue = currentValue.replace(/q/g, 'a');
+        currentValue = currentValue.replace(/w/g, 'b');
+        currentValue = currentValue.replace(/e/g, 'c');
+        currentValue = currentValue.replace(/r/g, 'd');
+        currentValue = currentValue.replace(/t/g, 'e');
+        currentValue = currentValue.replace(/y/g, 'f');
+        currentValue = currentValue.replace(/u/g, 'g');
+        currentValue = currentValue.replace(/i/g, 'h');
+        currentValue = currentValue.replace(/o/g, 'i');
+        currentValue = currentValue.replace(/p/g, 'j');
+        currentValue = currentValue.replace(/a/g, 'k');
+        currentValue = currentValue.replace(/s/g, 'l');
+        currentValue = currentValue.replace(/d/g, 'm');
+        currentValue = currentValue.replace(/f/g, 'n');
+        currentValue = currentValue.replace(/g/g, 'o');
+        currentValue = currentValue.replace(/h/g, 'p');
+        currentValue = currentValue.replace(/j/g, 'q');
+        currentValue = currentValue.replace(/k/g, 'r');
+        currentValue = currentValue.replace(/l/g, 's');
+        currentValue = currentValue.replace(/z/g, 't');
+        currentValue = currentValue.replace(/x/g, 'u');
+        currentValue = currentValue.replace(/c/g, 'v');
+        currentValue = currentValue.replace(/v/g, 'w');
+        currentValue = currentValue.replace(/b/g, 'x');
+        currentValue = currentValue.replace(/n/g, 'y');
+        currentValue = currentValue.replace(/m/g, 'z');
+        // Add more replacements as needed
+        inpOne.value(currentValue);
+      });
+  
+      // Second input box
+      inpTwo.input(() => {
+        let currentValue = inpTwo.value();
+        currentValue = currentValue.replace(/q/g, 'a');
+        currentValue = currentValue.replace(/w/g, 'b');
+        currentValue = currentValue.replace(/e/g, 'c');
+        // Add more replacements as needed
+        inpTwo.value(currentValue);
+      });
+  
+
+
+      if (level == 3) {
+
+        // Define key replacements
+        const keyReplacements = {
+          'q': 'a',
+          'w': 'b',
+          'e': 'c',
+          'r': 'd',
+          't': 'e',
+          'y': 'f',
+          'u': 'g',
+          'i': 'h',
+          'o': 'i',
+          'p': 'j',
+          'a': 'k',
+          's': 'l',
+          'd': 'm',
+          'f': 'n',
+          'g': 'o',
+          'h': 'p',
+          'j': 'q',
+          'k': 'r',
+          'l': 's',
+          'z': 't',
+          'x': 'u',
+          'c': 'v',
+          'v': 'w',
+          'b': 'x',
+          'n': 'y',
+          'm': 'z'
+        };
+    
+        // First input box
+        inpOne.input(() => {
+          let currentValue = inpOne.value();
+          for (const key in keyReplacements) {
+            if (currentValue.includes(key)) {
+              currentValue = currentValue.replace(new RegExp(key, 'g'), keyReplacements[key]);
+            }
+          }
+          inpOne.value(currentValue);
+        });
+    
+        // Second input box
+        inpTwo.input(() => {
+          let currentValue = inpTwo.value();
+          for (const key in keyReplacements) {
+            if (currentValue.includes(key)) {
+              currentValue = currentValue.replace(new RegExp(key, 'g'), keyReplacements[key]);
+            }
+          }
+          inpTwo.value(currentValue);
+        });
+    
+      }
+
+
+
+
+      const keyReplacements = {
+      'a': 'q',
+      'b': 'w',
+      'c': 'e',
+      'd': 'r',
+      'e': 't',
+      'f': 'y',
+      'g': 'u',
+      'h': 'i',
+      'i': 'o',
+      'j': 'p',
+      'k': 'a',
+      'l': 's',
+      'm': 'd',
+      'n': 'f',
+      'o': 'g',
+      'p': 'h',
+      'q': 'j',
+      'r': 'k',
+      's': 'l',
+      't': 'z',
+      'u': 'x',
+      'v': 'c',
+      'w': 'v',
+      'x': 'b',
+      'y': 'n',
+      'z': 'm'
+    };

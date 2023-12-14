@@ -51,28 +51,22 @@ let inpSix;
 let ansSix = "documents";
 let correctSix = false;
 
-
 //level4 tilemap
 let tileStart = false;
-
 let numRows = 9;
 let numColumns = 16;
 let tileSize = 80;
 let textures = [];
-
 let tiles = [];
-
 let player;
 let playerSprites = {};
 let playerSpeed = 3;
-
 
 //level5
 let showText = false;
 let inpPaste = false;
 let inpCopyText;
 let ansPaste = "bradley said it only took 5 minutes to dream up the iconic combination";
-
 
 //interaction counters
 let noClick = 0;
@@ -85,6 +79,24 @@ let clickedSound;
 let movedSound;
 let keySound;
 
+//physical instructions
+let texts = [
+
+  "turn your mouse 180 degrees", 
+  "turn your keyboard 180 degrees",
+  "stand up",
+  "turn your laptop around",
+  "touch the floor",
+  "sit down"
+
+];
+let textInstruc = false;
+let displayedText;
+let randomIndex;
+let xPos;
+let yPos;
+
+
 
 function preload() {
 
@@ -93,14 +105,17 @@ function preload() {
   textures[0] = loadImage(
     "assets/floor.png"
   );
+
   textures[1] = loadImage(
     "assets/wallup.png"
   );
+
   textures[2] = loadImage(
     "assets/wallside.png"
   );
 
   playerSprites = {
+
     up: loadImage(
       "assets/mouseup.png"
     ),
@@ -112,7 +127,8 @@ function preload() {
     ),
     right: loadImage(
       "assets/mouseright.png"
-    ),
+    )
+
   };
 
   clickedSound = loadSound('assets/error.mp3');
@@ -124,7 +140,6 @@ function preload() {
 function setup() {
 
   createCanvas(1280, 720);
-
 
   x = width/2;
   y = height/2;
@@ -215,9 +230,16 @@ function draw() {
 
   }
 
-  
+  if (level == 6) {
+
+    instruction();
+
+    image(cursor, cursorX, cursorY, 10, 15);
+
+  }
 
 }
+
 
 function startButton() {
 
@@ -235,7 +257,7 @@ function startButton() {
       && mouseY > y - 25
       && mouseY < y + 25){
 
-        level = int(random(1, 6));
+        level = 6;
 
       }
     
@@ -299,7 +321,8 @@ function pressButtons() {
 
     if (noCircles == 6) {
 
-      level = int(random(1, 6));
+      level = 6;
+      noCircles = 0;
 
     } else {
 
@@ -360,21 +383,7 @@ function typeWords() {
     inpOne = createInput('');
     inpOne.size(200);
     inpOne.id('inpOnePos');
-
-    //checking if input is the correct answer
-    inpOne.input(() => {
-
-      if (inpOne.value() == ansOne) {
-
-        correctOne = true;
-
-      } else {
-
-        correctOne = false;
-      }
-      
-    });
-
+    
     textOne = true;
 
   }
@@ -385,19 +394,6 @@ function typeWords() {
     inpTwo = createInput('');
     inpTwo.size(200);
     inpTwo.id('inpTwoPos');
-
-    inpTwo.input(() => {
-
-      if (inpTwo.value() == ansTwo) {
-
-        correctTwo = true;
-
-      } else {
-
-        correctTwo = false;
-      }
-      
-    });
 
     textTwo = true;
 
@@ -410,19 +406,6 @@ function typeWords() {
     inpThree.size(200);
     inpThree.id('inpThreePos');
 
-    inpThree.input(() => {
-
-      if (inpThree.value() == ansThree) {
-
-        correctThree = true;
-
-      } else {
-
-        correctThree = false;
-      }
-      
-    });
-
     textThree = true;
 
   }
@@ -433,19 +416,6 @@ function typeWords() {
     inpFour = createInput('');
     inpFour.size(200);
     inpFour.id('inpFourPos');
-
-    inpFour.input(() => {
-
-      if (inpFour.value() == ansFour) {
-
-        correctFour = true;
-
-      } else {
-
-        correctFour = false;
-      }
-      
-    });
 
     textFour = true;
 
@@ -458,19 +428,6 @@ function typeWords() {
     inpFive.size(200);
     inpFive.id('inpFivePos');
 
-    inpFive.input(() => {
-
-      if (inpFive.value() == ansFive) {
-
-        correctFive = true;
-
-      } else {
-
-        correctFive = false;
-      }
-      
-    });
-
     textFive = true;
 
   }
@@ -482,24 +439,9 @@ function typeWords() {
     inpSix.size(200);
     inpSix.id('inpSixPos');
 
-    inpSix.input(() => {
-
-      if (inpSix.value() == ansSix) {
-
-        correctSix = true;
-
-      } else {
-
-        correctSix = false;
-      }
-      
-    });
-
     textSix = true;
 
   }
-  
-
 
   //if all answers are correct, move to next level
   if (correctOne && 
@@ -509,7 +451,7 @@ function typeWords() {
     correctFive &&
     correctSix == true) {
 
-    level = int(random(1, 6));
+    level = 6; 
 
     //removing text box before next level
     inpOne.remove();
@@ -548,19 +490,19 @@ function tileMaze() {
 
 function buildMap(map) {
 
-  currentMap = map; //set the currently displayed map
+  currentMap = map; 
 
   numRows = currentMap.textureMap.length;
   numColumns = currentMap.textureMap[0].length;
 
   for (let row = 0; row < numRows; row++) {
 
-    tiles[row] = []; //initialise a new array for every row--this will refer to each column of tiles in our current row
+    tiles[row] = []; 
 
     for (let col = 0; col < numColumns; col++) {
 
-      let tileID = currentMap.textureMap[row][col]; //get the ID of the current texture from our tileMap
-      tiles[row][col] = new Tile(textures[tileID], row, col, tileSize); //initialise a new tile at the current row and column
+      let tileID = currentMap.textureMap[row][col]; 
+      tiles[row][col] = new Tile(textures[tileID], row, col, tileSize); 
 
     }
 
@@ -573,7 +515,7 @@ function handleTransition() {
   if (player.returnTransitionIndex() == 1) {
     
     player.setPos(0, 0);
-    level = int(random(1, 6));
+    level = 6;
 
   }
 
@@ -594,7 +536,6 @@ function copyPaste() {
     showText = true;
 
   }
-  
 
   if (inpPaste == false) {
 
@@ -608,9 +549,12 @@ function copyPaste() {
 
       if (inpCopyText.value() == ansPaste) {
 
-        level = int(random(1, 5));
+        showText = false;
+        inpPaste = false;
+
+        level = 6;
         inpCopyText.remove();
-        document.getElementById('copyText').style.display = 'none';
+        document.getElementById('copyText').remove();
 
       } 
       
@@ -622,11 +566,35 @@ function copyPaste() {
   
 }
 
+function instruction() {
 
+  background(r, g, b);
 
+  cursorX = mouseX;
+  cursorY = mouseY;
 
+  textFont('Times New Roman');
+  select('canvas').elt.style.letterSpacing = "1px";
+  fill(255);
+  textSize(32);
+  noStroke();
+  textAlign(LEFT, BOTTOM);
 
+  if (textInstruc == false) {
 
+    randomIndex = int(random(0, 6));
+
+    xPos = random(20, width - 300);
+    yPos = random(10, height);
+
+    textInstruc = true;
+
+  }
+
+  displayedText = texts[randomIndex];
+  text(displayedText, xPos, yPos);
+
+}
 
 
 //functions for the counters
@@ -637,6 +605,18 @@ function mousePressed() {
   if (!clickedSound.isPlaying()) {
 
     clickedSound.play();
+
+  }
+
+  if (level == 6) {
+
+    level = int(random(1, 6));
+
+    r = random(0, 255);
+    g = random(0, 255);
+    b = random(0, 255);
+
+    textInstruc = false;
 
   }
 
@@ -669,10 +649,224 @@ function keyPressed() {
     noDelete ++;
 
   }
+
+  if (level == 3) {
+
+    //Define key replacements
+    const keyReplacements = {
+      'q': 'a',
+      'w': 'b',
+      'e': 'c',
+      'r': 'd',
+      't': 'e',
+      'y': 'f',
+      'u': 'g',
+      'i': 'h',
+      'o': 'i',
+      'p': 'j',
+      'a': 'k',
+      's': 'l',
+      'd': 'm',
+      'f': 'n',
+      'g': 'o',
+      'h': 'p',
+      'j': 'q',
+      'k': 'r',
+      'l': 's',
+      'z': 't',
+      'x': 'u',
+      'c': 'v',
+      'v': 'w',
+      'b': 'x',
+      'n': 'y',
+      'm': 'z'
+    };
+
+    //Store original input values
+    let originalInputOneValue = inpOne.value();
+    let originalInputTwoValue = inpTwo.value();
+    let originalInputThreeValue = inpThree.value();
+    let originalInputFourValue = inpFour.value();
+    let originalInputFiveValue = inpFive.value();
+    let originalInputSixValue = inpSix.value();
+
+    //First input box
+    inpOne.input(() => {
+      if (keyCode === BACKSPACE) {
+
+        inpOne.value(originalInputOneValue.slice(0, -1));
+
+      } else {
+
+        inpOne.value(originalInputOneValue + (keyReplacements[key] || key));
+
+      }
+
+      originalInputOneValue = inpOne.value();
+
+      if (inpOne.value() == ansOne) {
+
+        correctOne = true;
+
+      } else {
+
+        correctOne = false;
+
+      }
+
+    });
+
+    //Second input box
+    inpTwo.input(() => {
+
+      if (keyCode === BACKSPACE) {
+
+        inpTwo.value(originalInputTwoValue.slice(0, -1));
+
+      } else {
+
+        inpTwo.value(originalInputTwoValue + (keyReplacements[key] || key));
+
+      }
+
+      originalInputTwoValue = inpTwo.value();
+
+      if (inpTwo.value() == ansTwo) {
+
+        correctTwo = true;
+
+      } else {
+
+        correctTwo = false;
+
+      }
+
+    });
+
+    // Third input box
+    inpThree.input(() => {
+
+      if (keyCode === BACKSPACE) {
+
+        inpThree.value(originalInputThreeValue.slice(0, -1));
+
+      } else {
+
+        inpThree.value(originalInputThreeValue + (keyReplacements[key] || key));
+
+      }
+
+      originalInputThreeValue = inpThree.value();
+
+      if (inpThree.value() == ansThree) {
+
+        correctThree = true;
+
+      } else {
+
+        correctThree = false;
+
+      }
+
+    });
+
+    // Fourth input box
+    inpFour.input(() => {
+
+      if (keyCode === BACKSPACE) {
+
+        inpFour.value(originalInputFourValue.slice(0, -1));
+
+      } else {
+
+        inpFour.value(originalInputFourValue + (keyReplacements[key] || key));
+
+      }
+
+      originalInputFourValue = inpFour.value();
+
+      if (inpFour.value() == ansFour) {
+
+        correctFour = true;
+
+      } else {
+
+        correctFour = false;
+
+      }
+
+    });
+
+    // Fifth input box
+    inpFive.input(() => {
+
+      if (keyCode === BACKSPACE) {
+
+        inpFive.value(originalInputFiveValue.slice(0, -1));
+
+      } else {
+
+        inpFive.value(originalInputFiveValue + (keyReplacements[key] || key));
+
+      }
+
+      originalInputFiveValue = inpFive.value();
+
+      if (inpFive.value() == ansFive) {
+
+        correctFive = true;
+
+      } else {
+
+        correctFive = false;
+
+      }
+
+    });
+
+    // Sixth input box
+    inpSix.input(() => {
+
+      if (keyCode === BACKSPACE) {
+
+        inpSix.value(originalInputSixValue.slice(0, -1));
+
+      } else {
+
+        inpSix.value(originalInputSixValue + (keyReplacements[key] || key));
+
+      }
+
+      originalInputSixValue = inpSix.value();
+
+      if (inpSix.value() == ansSix) {
+
+        correctSix = true;
+
+      } else {
+
+        correctSix = false;
+
+      }
+
+    });
+
+  }
   
   //for tilemap level
   player.setDirection(key); 
   handleTransition();
-  
 
+  if (level == 5) {
+
+    if (document.activeElement === inpCopyText.elt) {
+      
+      return false;
+
+    }
+
+  }
+  
 }
+
+

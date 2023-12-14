@@ -85,3 +85,60 @@ canvas {
   position: absolute;
 
 }
+
+#scroll-container-one {
+  height: 100%;
+  width: 50%;
+  overflow: visible;
+  position: absolute;
+  left: 0%;
+
+}
+
+#scroll-text-one {
+  height: 100%;
+  text-align: left;
+  opacity: 0.5;
+  color: red;
+
+  /* animation properties */
+  animation: my-animation-one 8s linear infinite;
+}
+
+/* animation keyframes */
+@keyframes my-animation-one {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+#scroll-container-two {
+  height: 800%;
+  width: 50%;
+  overflow: visible;
+  position: absolute;
+  right: 0%;
+
+}
+
+#scroll-text-two {
+  height: 100%;
+  text-align: right;
+  opacity: 0.5;
+  color: green;
+
+  /* animation properties */
+  animation: my-animation-two 30s linear infinite;
+}
+
+@keyframes my-animation-two {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
