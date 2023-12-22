@@ -524,7 +524,7 @@ function handleTransition() {
 
 function copyPaste() {
 
-  background (200);
+  background (255, 0, 255);
 
   cursorX = mouseX;
   cursorY = mouseY;
