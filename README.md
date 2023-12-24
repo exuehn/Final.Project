@@ -24,3 +24,8 @@ Most users would assume that the end point would be at the corner of the canvas 
 ![Level 5](ss+rec/screenshot5.png)
 To complete this stage, users will have to highlight the text message then drag and drop the words into the textbox.  
 In this level, users may feel the urge to use shortcut keys to complete the task. However, shortcut keys has been disabled on the project as well as the use of keyboard keys. Users would have to think out of the box and find other ways to insert the texts. The text shown on this level was taken from an article explaining how shortcut keys originated. It is very suprising that this commonly use combination of keys only took 5 minutes to be invented and now keyboard users relies on it while using a lot of different interfaces.
+
+# External Directions
+![Direction 1](ss+rec/screenshot6.png)
+![Direction 2](ss+rec/screenshot7.png)
+Text would appear after every level. Users are welcomed to follow the instructions if applicable. The reason for this is to disconnect the users from their normal position when using interfaces and draw attention to their phisicality. 
